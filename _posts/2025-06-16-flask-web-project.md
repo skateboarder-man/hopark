@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  파이썬의 flask를 이용하여 웹페이지 만들기
+title: 파이썬의 flask를 이용하여 웹페이지 만들기
 tags: [python][web][flask]
 categories: python
 ---
