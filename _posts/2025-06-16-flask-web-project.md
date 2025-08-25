@@ -37,12 +37,13 @@ categories: python
 1. 사전조건
  - visual studio code 설치
  - 파이썬 설치
+ - mysql(DBMS)
 
 2. 공유한 github 링크 접속하여 다운로드 받기
  - [flask 웹 소스 링크](https://github.com/skateboarder-man/expense_hopark) https://github.com/skateboarder-man/expense_hopark
 
 3. 소스코드 열기
- - visual studio code를 이용하여 다운받은 소스코드를 file -> open folder를 이용하여 폴더 열기
+ - visual studio code를 이용하여 다운받은 소스코드를 file -> open folder 폴더 열기
 
 4. .env 파일 만들기
  - DB 설정 정보 및 노출 되면 안되는 중요한 정보를 관리한다.
@@ -65,4 +66,36 @@ FLASK_ENV=development #production #development
 #난수 생성 SECRET_KEY 입력
 FLASK_SECRET_KEY='test 폴더의 ranHexlify.py 실행한 16진수 문자열 입력'
 ```
+
+5. ddl 생성 
+  - ddl.txt 파일을 참조하여 데이터베이스 생성
+
+6. 프로젝트 실행
+  - visual studio code 메뉴에서 terminal -> new terminal 선택
+  - readME.txt 파일의 내용중 프로젝트 실행 순서 명령어 입력
+  ```
+    python -m venv venv
+    .\venv\Scripts\activate
+    pip install -r requirements.txt
+    python.exe -m pip install --upgrade pip
+    python app.py
+  ```
+
+7. 접속하여 화면 확인
+ - http://127.0.0.1:5000/
+ - ![alt text](main.png)
+
+8. 로그인
+ - 회원가입기능은 없으니 데이터베이스 테이블 worker_info의 insert(DML) 입력 
+ ```
+    INSERT INTO worker_info
+    (worker_num, name, bank_nm, accn_num, login_id, login_pw, roles, first_rgtr, first_rgst_date, update_rgtr, update_rgst_date, delete_rgtr, delete_rgst_date, delete_yn)
+    VALUES('250617162708000001', 'admin', '', '', '999999001', 'scrypt:32768:8:1$uelptfdpqmYLSBkz$8153a3f9c5187dac4d9f86c8223f61fd5bc2504e5a7ddd7012ece1039735d9cc154a7ca7507d277715bc8440bf2a373cff385b023ef69f2d79754b90aa59013c', 'user,admin', NULL, NULL, NULL, NULL, NULL, NULL, 'N');
+ ```
+ - ID : 999999001
+ - PW : 1234!
+
+
+
+
 
