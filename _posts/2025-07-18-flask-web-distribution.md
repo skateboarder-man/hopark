@@ -213,6 +213,6 @@ docker container ls
 ```
 
 - 외부 접속 가능하도록 포트열어주면 외부에서 접속이 가능하다.
-![alt text](flask_strucher.png)
+![alt text](main_page.png)
 
 
