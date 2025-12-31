@@ -175,14 +175,6 @@ DB: mysql
         
     </http>
     
-    <!-- <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="user" password="{noop}1234" authorities="ROLE_USER" />
-                <user name="admin" password="{noop}admin" authorities="ROLE_ADMIN, ROLE_USER" />
-            </user-service>
-            </authentication-provider>
-    </authentication-manager> -->
       <authentication-manager alias="authenticationManager">
     	<authentication-provider user-service-ref="userSecurityService">
 	     	<password-encoder ref="passwordEncoder"/> 
