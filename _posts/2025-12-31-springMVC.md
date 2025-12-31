@@ -2,7 +2,7 @@
 layout: post
 title: springMVC 패턴 spriong security(XML)
 tags: [spring]
-categories: java, spring, mvc, legacy, login, spring security
+categories: spring
 ---
 
 
