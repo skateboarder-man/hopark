@@ -6,3 +6,6 @@
     # gem install webrick
     # bundle install
     # bundle exec jekyll serve
+
+
+    bundle install 부터 시작하면 된다.
