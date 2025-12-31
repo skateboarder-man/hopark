@@ -10,13 +10,13 @@ categories: spring
 
 - Spring Security(JWT) 적용 이유
 
-React(front) + Spring MVC(backand) 방식으로 로그인 기능을 구현하기 위해 JWT 방식을 선택함.
+> React(front) + Spring MVC(backand) 방식으로 로그인 기능을 구현하기 위해 JWT 방식을 선택함.
 
 - JWT를 선택한 이유
 
-Stateless(무상태성)의 이점: 서버가 사용자의 상태를 저장하지 않으므로, 서버 부하가 줄어들고 수평적 확장(Scale-out)에 유리함.
-REST API와의 궁합: React는 비동기 요청을 보내는 클라이언트임. 별도의 세션 관리 없이 헤더에 토큰을 실어 보내는 방식이 RESTful한 설계에 더 부합함.
-보안과 유연성: 세션 취약점(CSRF)에서 비교적 자유롭고, 한 번 발급된 토큰으로 다른 서비스(Microservices)에서도 인증이 가능하다는 점.
+1. Stateless(무상태성)의 이점: 서버가 사용자의 상태를 저장하지 않으므로, 서버 부하가 줄어들고 수평적 확장(Scale-out)에 유리함.
+2. REST API와의 궁합: React는 비동기 요청을 보내는 클라이언트임. 별도의 세션 관리 없이 헤더에 토큰을 실어 보내는 방식이 RESTful한 설계에 더 부합함.
+3. 보안과 유연성: 세션 취약점(CSRF)에서 비교적 자유롭고, 한 번 발급된 토큰으로 다른 서비스(Microservices)에서도 인증이 가능하다는 점.
 
 - JWT 흐름도 
 
@@ -165,3 +165,10 @@ DB: mysql
 </beans:beans>
 ```
 
+- context-security.xml 설정 설명
+
+> 1. 주요 보안 빈(Bean) 설정
+> - BCryptPasswordEncoder: 비밀번호를 안전하게 해싱(암호화)하여 저장하고 비교할 때 사용.
+> - JwtTokenProvider: JWT 토큰의 생성, 파싱, 유효성 검증을 담당하는 핵심 클래스.
+> - JwtAuthenticationEntryPoint: 인증되지 않은 사용자가 보호된 리소스에 접근했을 때 에러(401 Unauthorized)를 처리.
+> - RefreshTokenService: 토큰 만료 시 재발급을 위한 Refresh 토큰 로직을 담당.
