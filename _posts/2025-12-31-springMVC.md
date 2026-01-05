@@ -1,6 +1,6 @@
 ---
 layout: post
-title: springMVC 패턴 spriong security(XML)
+title: springMVC 패턴 spriong security_0(XML)
 tags: [spring]
 categories: spring
 ---
