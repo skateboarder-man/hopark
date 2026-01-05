@@ -5,9 +5,6 @@ tags: [spring]
 categories: spring
 ---
 
-
-작업중
-
 - Spring Security(JWT) 적용 이유
 
 > React(front) + Spring MVC(backand) 방식으로 로그인 기능을 구현하기 위해 JWT 방식을 선택함.
@@ -172,3 +169,17 @@ DB: mysql
 > - JwtTokenProvider: JWT 토큰의 생성, 파싱, 유효성 검증을 담당하는 핵심 클래스.
 > - JwtAuthenticationEntryPoint: 인증되지 않은 사용자가 보호된 리소스에 접근했을 때 에러(401 Unauthorized)를 처리.
 > - RefreshTokenService: 토큰 만료 시 재발급을 위한 Refresh 토큰 로직을 담당.
+> - jsonAuthenticationFilter : 일반적인 폼 로그인이 아닌, JSON 데이터로 들어오는 로그인 요청(ID/PW)을 처리, 성공 시 jwtAuthenticationSuccessHandler를 통해 JWT를 발급, 실패시 jwtAuthenticationFailureHandler 통해 계정 잠금 및 메시지 출력.
+
+> 2. HTTP 보안 설정 (http)
+> - 비상태성 유지 (create-session="stateless"): 서버에서 세션을 생성하지 않겠다는 설정, JWT를 사용하므로 서버 메모리에 사용자 상태를 저장할 필요가 없음.
+> - CORS 설정 (corsFilter): http://localhost:3000 (주로 React나 Vue 같은 프런트엔드)에서 오는 요청을 허용하며, 모든 HTTP 메서드(GET, POST 등)를 허용.
+> - URL별 접근 권한: 로그인 없이 누구나 접근 가능 (permitAll), 관리자(ROLE_ADMIN)만 접근 가능, 그 외 모든 요청 반드시 인증된(로그인한) 사용자만 접근 가능.
+> -  CSRF 비활성화 (csrf disabled="true"): JWT를 사용하는 Stateless 환경에서는 CSRF 공격 위험이 적고, API 서버 특성상 비활성화하는 경우가 많음.
+
+> 2. 인증 관리 (authentication-manager)
+> - userSecurityService : 데이터베이스에서 사용자 정보를 조회하는 서비스.
+> - passwordEncoder: 사용자가 입력한 비밀번호와 DB의 암호화된 비밀번호를 비교할 때 사용.
+
+이번 포스팅에서는 XML 설정을 통한 보안 구조를 살펴보았습니다. 이어지는 다음 포스팅에서는 실제 동작을 담당하는 주요 Bean 설정 클래스와 필터, 그리고 인증 관리 클래스를 직접 구현하는 방법에 대해 자세히 알아보겠다.
+
